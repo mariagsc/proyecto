@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubre nuestro menú digital con los mejores platos, promociones y servicio a domicilio. ¡Delicioso y fácil de pedir!" />
+  <title>Delivery | WB Restaurante-Bar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/css/style.css">
+  <style>
+    .plato, .carrito-item { display: flex; align-items: center; margin: 10px 0; }
+    .plato img { width: 100px; height: 100px; margin-right: 10px; }
+    .carrito { background: #fff; padding: 10px; margin-top: 20px; border-radius: 10px; }
+    .btn { padding: 8px 12px; background: gold; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px; }
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../tarea/index.html">
+  <img src="../tarea/IMG/LOGO PAGINA.png" alt="Logo">
+</a>
+<h1>WB Restaurante-Bar</h1>
+<button class="menu-toggle" aria-label="Abrir menú">☰</button>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../tarea/index.html">Home</a></li>
+    <li><a href="../tarea/cartas.html">Carta</a></li>
+    <li><a href="../tarea/sobrenosotros.html">Nosotros</a></li>
+    <li><a href="../tarea/reservar.html">Reserva</a></li>
+    <li><a href="../tarea/contactos.html">Contacto</a></li>
+    <li><a href="../tarea/delivery.html">Delivery</a></li>
+  </ul>
+</nav>
+</header>
+
+<main class="menu">
+  <h2>Nuestras Promociones</h2>
+
+  <section class="categoria">
+    <h3>Elige tus Platos</h3>
+    <div class="plato">
+      <img src="../tarea/IMG/combo1.webp" alt="cevichero">
+      <div>
+        <h4>Ceviche Para 4 personas</h4>
+        <p>Frescura del mar en cada bocado. Ideal para compartir con amigos o familia.</p>
+        <span class="precio">30.900</span>
+        <button class="btn" onclick="agregarAlCarrito('Combo Cevichero', 30900)">Agregar</button>
+      </div>
+    </div>
+    <div class="plato">
+      <img src="../tarea/IMG/combo2.webp" alt="hamburguesa">
+      <div>
+        <h4>Bacon Cheddar Para 2</h4>
+        <p>Dos hamburguesas jugosas con tocino crujiente y cheddar fundido. ¡Una explosión de sabor!</p>
+        <span class="precio">$20.500</span>
+        <button class="btn" onclick="agregarAlCarrito('Combo Bacon', 20500)">Agregar</button>
+      </div>
+    </div>
+    <div class="plato">
+      <img src="../tarea/IMG/combo3.jpeg" alt="sushi">
+      <div>
+        <h4>70 piezas de Sushi</h4>
+        <span class="precio">$20.500</span>
+       <p>Sección premium de sushi variado. Perfecto para eventos o una cena especial.</p>
+        <button class="btn" onclick="agregarAlCarrito('SUSHI', 20500)">Agregar</button>
+      </div>
+    </div>
+       <div class="plato">
+      <img src="../tarea/IMG/pizzas.jpg" alt="pizza con bebida">
+      <div>
+        <h4>Pizza Mas Bebida</h4>
+        <p>Disfruta una pizza artesanal con una michelada bien fría. El dúo perfecto.</p>
+        <span class="precio">$10.500</span>
+        <button class="btn" onclick="agregarAlCarrito('PIZZA', 20500)">Agregar</button>
+      </div>
+       </div>
+       <div class="plato">
+      <img src="../tarea/IMG/paella-1.jpg" alt="paella">
+      <div>
+        <h4>Paella Española Para 3</h4>
+        <p>Receta tradicional con mariscos frescos, arroz sazonado y mucho sabor mediterráneo.</p>
+        <span class="precio">$20.500</span>
+        <button class="btn" onclick="agregarAlCarrito('Paella', 20500)">Agregar</button>
+      </div>
+    </div>
+  </section>
+  <section class="carrito">
+    <h3>Tu Pedido</h3>
+    <div id="lista-carrito"></div>
+    <p>Total: $<span id="total">0</span></p>
+ <h4>Datos de Entrega</h4>
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="direccion" placeholder="Dirección" required>
+    <input type="tel" id="telefono" placeholder="Teléfono" required>
+    <button class="btn" onclick="enviarPedido()">Enviar por WhatsApp</button>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container text-center">
+    <div class="row footer-content">
+      <div class="col derechos">
+        <p>© 2025 Todos los derechos reservados</p>
+      </div>
+      <div class="col contacto">
+        <div>Contacto</div>
+        <div>+56 9 2345 6789</div>
+        <div>Av. Vitacura 2211, Las Condes</div>
+        <div>reservas@wbrestaurant.cl</div>
+        <div>Horarios de Atención (Lunes a Domingo)</div>
+        <div>13:00 hrs a 00:00 hrs</div>
+      </div>
+      <div class="col redes-sociales">
+        <a href="#"><img src="./IMG/instagram-.webp" alt="instagram"></a>
+        <a href="#"><img src="../tarea/IMG/wsap.png" alt="whatsapp"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const carrito = [];
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const lista = document.getElementById("lista-carrito");
+    const total = document.getElementById("total");
+    lista.innerHTML = "";
+    let suma = 0;
+    carrito.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("carrito-item");
+      div.textContent = `${item.nombre} - $${item.precio}`;
+      lista.appendChild(div);
+      suma += item.precio;
+    });
+    total.textContent = suma;
+  }
+
+  function enviarPedido() {
+    const nombre = document.getElementById("nombre").value;
+    const direccion = document.getElementById("direccion").value;
+    const telefono = document.getElementById("telefono").value;
+
+    if (!nombre || !direccion || !telefono || carrito.length === 0) {
+      alert("Por favor completa todos los campos y agrega al menos un producto.");
+      return;
+    }
+
+    let mensaje = `Hola! Soy ${nombre}, quiero pedir:\n`;
+    carrito.forEach(item => mensaje += `- ${item.nombre}: $${item.precio}\n`);
+    mensaje += `\nDirección: ${direccion}\nTeléfono: ${telefono}`;
+
+    const url = `https://wa.me/56923456789?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  }
+</script>
+<script>
+  const toggleButton = document.querySelector('.menu-toggle');
+  const navbar = document.querySelector('.navbar');
+
+  toggleButton.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+ utton {
+    background-color: #e0c97f;
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background-color: #d4b25a;
+    }
+  }
+
+.mi-boton {
+  padding: 10px 20px;
+  background-color: rgba(28, 31, 63, 0.651);
+  color: rgba(144, 211, 0, 0.823);
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(6, 52, 87, 0.2);
+  }
+}

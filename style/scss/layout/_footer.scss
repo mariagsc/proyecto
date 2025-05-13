@@ -1,0 +1,59 @@
+ .footer {
+  background-color: rgba(8, 3, 35, 0.6);
+  color: $text-color;
+  text-align: center;
+  padding: 40px 0;
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .col {
+      flex: 1;
+      padding: 20px;
+
+      div,
+      p {
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+    }
+
+    .contacto div:first-child {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .derechos p {
+      font-size: 20px;
+      color: $text-color;
+    }
+
+    .redes-sociales {
+      p {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      img {
+        width: 50px;
+        margin: 0 10px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}
+
+
+.wpp {
+  position: fixed;
+
+  img {
+    width: 40px;
+  }
+}
